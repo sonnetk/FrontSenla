@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let variable = (a, b= 100) => a + b;
     books.onclick = () => {
-        console.log(variable(5))
+        console.log(variable(5) )
         console.log(variable(5, 50))
         oneFunction(1,54,24,1,6,24,6)
         console.log(breakfast)
