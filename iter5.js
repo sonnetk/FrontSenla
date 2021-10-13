@@ -28,16 +28,20 @@ document.addEventListener('DOMContentLoaded', function () {
 // ‘super’ keyword
 
 
+
 // yield
 
 
+
 // деструктуризация объекта
+//по нажатию на кнопку получить объект и деструктуризировать его
 
 
 // строковый шаблон
 
 
 // класс в JS
+
 
 
 }, false);
