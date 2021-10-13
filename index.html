@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descriptor" content="КNИГИVАМ – городской буккроссинг">
+    <meta name="keywords" content="буккроссинг,книгивам,книги,Тула">
+    <base href="#">
+    <title>KNИГИVAM</title>
+    <script src="script.js"></script>
+    <script src="iter5.js"></script>
+</head>
+<body>
+<div class="grid">
+    <header>
+        <div>
+            <h1><a href='index.html'> <img src="images/logo.png" alt="Логотип"></a> КNИГИVАМ</h1>
+        </div>
+    </header>
+    <aside>
+        <div class="nav">
+            <ul class="menu">
+                <li><a href='#about'>О нас</a></li>
+                <li><a href='#genres'>Жанры</a></li>
+                <li><a href='#form'>Анкета</a></li>
+                <li><a href='#contacts'>Контакты</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <div class="div1"><a href="#"><img src="images/friends.png" alt="Друзья" width="90" height="90"></a></div>
+        <div class="div2"><a href="#">
+            <img src="images/cat.png" alt="Котик" width="90" height="90"></a>
+            <button id="buttonStop">Не дам вызывать alert</button>
+        </div>
+        <div class="div3"><a href="#"><img src="images/open-book.png" alt="Книга" width="90" height="90"></a></div>
+        <div class="content">
+            <div class="about">
+                <h2 id="about">О нас</h2>
+                <div>
+                    <p> Приветствуем Вас, уважаемый посетитель!<br>
+                        <b> КNИГИVАМ </b> – городской буккроссинг.
+                        Процесс буккроссинга состоит из простейшего действия, основанного на принципе <i> «прочитал —
+                            отдай другому» </i>.
+                        Мы готовы принять у Вас пришедшую в ненадобность книгу,
+                        чтобы любой желающий мог забрать ее у нас и прочитать. Книги,
+                        непригодные для передачи, мы самостоятельно сдадим на переработку!<br>
+                        Для участия в нашем проекте Вам необходимо только заполнить
+                        форму пользователя.</p>
+                    <img id="clickBooks" src="images/books.svg" alt="Книги" width="15%" height="15%">
+                </div>
+            </div>
+            <button id="clickHere">НАЖМИ НА МЕНЯ</button>
+            <button id="hHere">НАВЕДИ НА МЕНЯ</button>
+            <input id="inputOne" placeholder="ВВЕДИ ТЕКСТ">
+            <span id="spanInp"></span>
+            <div class="genres">
+                <h2 id="genres">Жанры</h2>
+                <div>
+                    <table>
+                        <caption>Вы можете найти у нас следующие жанры книг</caption>
+                        <tr>
+                            <th>Фантастика</th>
+                            <th>Мистика</th>
+                            <th>Драма</th>
+                            <th>Научно-популярные</th>
+                            <th>Детективы</th>
+                            <th>Учебная литература</th>
+                        </tr>
+                        <tr>
+                            <td><img src="images/cat3.jpg" alt="Фантастика" width="160" height="160"></td>
+                            <td><img src="images/cat6.jpg" alt="Мистика" width="160" height="160"></td>
+                            <td><img src="images/cat5.jpg" alt="Драма" width="160" height="160px"></td>
+                            <td><img src="images/cat7.jpg" alt="Научно-популярные" width="160" height="160"></td>
+                            <td><img src="images/cat1.jpg" alt="Детективы" width="160" height="160"></td>
+                            <td><img src="images/cat8.jpg" alt="Учебная литература" width="160" height="160"></td>
+                        </tr>
+                        <tr>
+                            <td>В наличии книг: 157</td>
+                            <td>В наличии книг: 124</td>
+                            <td>В наличии книг: 98</td>
+                            <td>В наличии книг: 145</td>
+                            <td>В наличии книг: 72</td>
+                            <td>В наличии книг: 105</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="form">
+                <h2 id="form">Анкета</h2>
+                <span>Для того, чтобы стать нашим пользователем, выполните 3 простых шага:</span>
+                <ol>
+                    <li>Заполните контактную информацию о себе</li>
+                    <li>Расскажите о себе, отметив подходящие вам пункты</li>
+                    <li>Отправьте нам свой ответ</li>
+                </ol>
+                <form>
+                    <div>
+                        <fieldset>
+                            <legend>Контактные данные</legend>
+                            <label for="fname">Имя<sup>*</sup></label>
+                            <input type="text" id="fname" name="fname" title="Обязательное поле" required><br>
+                            <label for="lname">Фамилия<sup>*</sup></label>
+                            <input type="text" id="lname" name="lname" title="Обязательное поле" required><br>
+                            <label for="birthday">Дата рождения<sup>*</sup></label>
+                            <input type="date" id="birthday" name="birthday" min="1900-01-01" value="1990-01-01"
+                                   title="Обязательное поле" required><br>
+                            <label for="email">Ваш email</label>
+                            <input type="email" id="email" name="email"><br>
+                            <label for="phone">Ваш номер телефона<sup>*</sup></label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="88001234567"
+                                   title="В формате: 88001234567" required><br>
+                            <small>* - обязательные для заполнения поля</small>
+                        </fieldset>
+                        <br>
+                        <fieldset>
+                            <legend>Расскажите о себе</legend>
+                            <label>Вы предпочитаете жанры:</label><br>
+                            <input type="checkbox" id="option1" name="option1" value="Fiction">
+                            <label for="option1">Фантастика</label>
+                            <input type="checkbox" id="option2" name="option2" value="Mysticism">
+                            <label for="option2">Мистика</label>
+                            <input type="checkbox" id="option3" name="option3" value="Drama">
+                            <label for="option3">Драма</label><br>
+                            <input type="checkbox" id="option4" name="option4" value="Scientific">
+                            <label for="option4">Научные</label>
+                            <input type="checkbox" id="option5" name="option5" value="Detectives">
+                            <label for="option5">Детективы</label>
+                            <input type="checkbox" id="option6" name="option6" value="Educational literature">
+                            <label for="option6">Учебная литература</label><br>
+                            <br>
+                            <input type="radio" id="yes" name="ask" value="yes">
+                            <label for="yes">У меня есть книги, которыми я хотел(а) бы поделиться</label><br>
+                            <input type="radio" id="no" name="ask" value="no">
+                            <label for="no">У меня нет книг, которыми я хотел(а) бы поделиться</label><br>
+                        </fieldset>
+                    </div>
+                    <input name='submit' type="submit">
+                </form>
+                <div class="footer">
+                    <h2 id="contacts">Наши контакты</h2>
+                    <ul class="contacts">
+                        <li><img src="images/address.png" alt="Адрес" width="15" height="15"> г.Тула, пр. Ленина, 100500
+                        </li>
+                        <li><img src="images/tel.png" alt="Телефон" width="15" height="15"> 88005553535</li>
+                        <li><img src="images/inst.png" alt="Инстаграм" width="15" height="15"> knigivam.tula</li>
+                    </ul>
+                    <span> &copy; Все права защищены</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
