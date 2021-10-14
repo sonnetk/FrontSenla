@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
             nameL = document.getElementById('lname').value,
             phoneNumber = document.getElementById('phone').value
 
+
         alert("Привет, "+nameF+" "+ nameL+"! \u{1F60D}")
         console.log('I\'m ok')
         alert(`Ваш номер телефона: ${phoneNumber}`)
