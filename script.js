@@ -1,21 +1,22 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', function () {
+// браузер полностью загрузил HTML, было построено DOM-дерево, но внешние ресурсы, такие как картинки <img> и стили, могут быть ещё не загружены.
 
-    // браузер полностью загрузил HTML, было построено DOM-дерево, но внешние ресурсы, такие как картинки <img> и стили, могут быть ещё не загружены.
     let divOne = document.querySelector('.div1'),
         divTwo = document.querySelector('.div2'),
         divThree = document.querySelector('.div3')
 
-    console.log(divOne.getAttribute('class'))
-    divOne.classList.add('class')
-    console.log(divOne.className)
-    divOne.className = 'class'
-    console.log(divOne.className)
-    divOne.classList.toggle('class')
-    console.log(divOne.className)
-    divOne.classList.toggle('class')
-    console.log(divOne.className, divOne.classList.contains('class'))
+// Играюсь с class
+//     console.log(divOne.getAttribute('class'))
+//     divOne.classList.add('class')
+//     console.log(divOne.className)
+//     divOne.className = 'class'
+//     console.log(divOne.className)
+//     divOne.classList.toggle('class')
+//     console.log(divOne.className)
+//     divOne.classList.toggle('class')
+//     console.log(divOne.className, divOne.classList.contains('class'))
 
     divOne.onclick = function() {
         let variableOne = 2
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         alert(`Ваш номер телефона: ${phoneNumber}`)
     }
 
-    //Из файла html
+    //Из файла html (iter4)
     let buttonMain = document.getElementById('clickHere'),
         buttonTwo = document.getElementById('hHere'),
         inpOne = document.getElementById('inputOne'),
@@ -96,5 +97,72 @@ document.addEventListener('DOMContentLoaded', function () {
 
     butStop.onclick = () => event.stopPropagation()
 
+    // 1. Arrow function
+// 2. Default parameter
+// 3. Spread/Rest operator
+
+// вывод в консоль различных результатов по нажатию на изображение книг
+
+    let books = document.querySelector('#clickBooks')
+    let arr = ['apple', 'banana', 'orange', 'test'];
+    let breakfast = arr.map(fruit => {
+        return fruit + 's';
+    });
+    function oneFunction(...args) {
+        console.log(args);
+    }
+
+    let variable = (a, b= 100) => a + b;
+    books.onclick = () => {
+        console.log(variable(5) )
+        console.log(variable(5, 50))
+        oneFunction(1,54,24,1,6,24,6)
+        console.log(breakfast)
+    }
+
+
+// 4. класс в JS
+// 5. ‘super’ keyword
+// 6. строковый шаблон
+// 7. деструктуризация объекта
+// 8. yield
+
+// по нажатию на кнопку Submit создать объект и деструктуризировать его,
+// создать класс и потомка,обратиться к родительскому классу с помощью super,
+// вывести в консоль отсчет, сгенерированный с помощью yield, приветствие
+
+    document.querySelector('#submit').onclick = function () {
+        let nameP = {
+            fName: document.getElementById('fname').value,
+            lName: document.getElementById('lname').value
+        };
+        let { fName: F, lName: L, number: N ='без номера' } = nameP;
+
+        function* generate() {
+            yield 3;
+            yield 2;
+            yield 1;
+        }
+        let generator = generate()
+        for(let i of generator) {
+            console.log(i);
+        }
+
+        class nameUser {
+            constructor() {
+                console.log(`${F} - получено имя`);
+            }
+        }
+
+        class findNameUser extends nameUser {
+            constructor() {
+                super();
+                console.log(`${L} - получена фамилия`);
+            }
+        }
+
+        let x = new findNameUser();
+        console.log(`Привет, ${F} ${L} ${N}!`);
+    }
 
 }, false);
