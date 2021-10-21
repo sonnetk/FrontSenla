@@ -18,15 +18,28 @@ document.addEventListener('DOMContentLoaded', function () {
     myBind(4)
 
 //    - получение текущего URL
+//    - вывод alert
+    document.querySelector('#clickURL').onclick = () => alert(window.location.href)
 
 //    - получение, навигация и изменение истории переходов страницы/окна (BOM)
+//    Играюсь с console
+    document.querySelector('#clickBOM').onclick = () => {
+        console.clear()
+        console.log(window.history)
+        console.log(navigator.platform, navigator.appCodeName,navigator.language)
 
-//    - вывод alert
+    }
+
+    document.querySelector('.index1').onclick = () => window.location.href='index_new.html'
+    document.querySelector('.index2').onclick = () => window.location.href='index_next.html'
+
+    document.querySelector('.back').onclick = () => window.history.back()
+    document.querySelector('.next').onclick = () => window.history.forward()
+    document.querySelector('.go').onclick = () => window.history.go(-2)
+
 
 //    - сохранение Cookie и перезапись с параметрами
-
 //    - сохранение данных в Local Storage, Session Storage и получение данных из них
-
 //    - debugging в консоли
 
 

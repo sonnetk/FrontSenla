@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descriptor" content="КNИГИVАМ – городской буккроссинг">
+    <meta name="keywords" content="буккроссинг,книгивам,книги,Тула">
+    <base href="#">
+    <title>KNИГИVAM</title>
+    <script src="iter6.js"></script>
+</head>
+<body>
+    <header>
+        <div>
+            <h1><a href='index.html'> <img src="images/logo.png" alt="Логотип"></a> СТРАНИЦА2</h1>
+        </div>
+    </header>
+    <br>
+    <main>
+        <hr>
+        <button onclick="window.location.href='index.html'">НА ГЛАВНУЮ</button>
+        <hr>
+        <button class="back">Назад</button>
+        <hr>
+        <button class="next">Вперед</button>
+    </main>
+    <script>
+        document.querySelector('.back').onclick = () => window.history.back()
+        document.querySelector('.next').onclick = () => window.history.forward()
+    </script>
+</body>
+</html>
