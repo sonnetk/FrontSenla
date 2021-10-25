@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
         console.clear()
         console.log(window.history)
         console.log(navigator.platform, navigator.appCodeName,navigator.language)
-
+        console.info('Информация')
+        console.warn('Предупреждение')
+        console.error('Ошибка')
     }
 
     document.querySelector('.index1').onclick = () => window.location.href='index_new.html'

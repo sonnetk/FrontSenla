@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     butStop.onclick = () => event.stopPropagation()
 
-    // 1. Arrow function
+// 1. Arrow function
 // 2. Default parameter
 // 3. Spread/Rest operator
 
