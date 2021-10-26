@@ -66,8 +66,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //    - сохранение данных в Local Storage, Session Storage и получение данных из них
-//    - debugging в консоли
+    document.querySelector('#clickSS').onclick = () => {
+        console.log(sessionStorage.getItem('testSession')) // null, если вкладка новая
+        sessionStorage.setItem('testSession', 'Я тут до закрытия вкладки')
+        sessionStorage.setItem('test', ':)');
+        console.log(sessionStorage.getItem('test'), `\n Количество элементов - ${sessionStorage.length}`);
+        sessionStorage.removeItem('test')
+        console.log(`Произведено удаление по ключу test\n Количество элементов - ${sessionStorage.length}`);
+    }
 
+    document.querySelector('#clickLS').onclick = () => {
+        console.log(localStorage.getItem('testLocal')) // null только в первый запуск или после localStorage.removeItem('testLocal') в консоли
+        localStorage.setItem('testLocal', 'Я переживу перезапуск браузера')
+        localStorage.setItem('test', ':)');
+        console.log(localStorage.getItem('test'), `\n Количество элементов - ${localStorage.length}`);
+        localStorage.removeItem('test')
+        console.log(`Произведено удаление по ключу test\n Количество элементов - ${localStorage.length}`);
+
+    }
+//    - debugging в консоли
 
 
 // ИЗУЧИТЬ
