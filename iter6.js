@@ -2,19 +2,20 @@
 document.addEventListener('DOMContentLoaded', function () {
 // Создать массив из массива массивов
     const allArray = [["Фантастика", "Мистика"],
-                      ["Драма", "Науч-поп", "Детективы"],
-                      ["Учебная литература"]]
+        ["Драма", "Науч-поп", "Детективы"],
+        ["Учебная литература"]]
 
-    console.log(allArray.reduce( (total, all) => total.concat(all)))
+    console.log(allArray.reduce((total, all) => total.concat(all)))
 
 // Играюсь с bind
     function add(c, d) {
         console.log(this.a + this.b + c + d);
     }
+
     const ten = {a: 1, b: 2};
     add.call(ten, 3, 4);
-    add.apply(ten, [3,4]);
-    const myBind = add.bind(ten,3)
+    add.apply(ten, [3, 4]);
+    const myBind = add.bind(ten, 3)
     myBind(4)
 
 //    - получение текущего URL
@@ -26,14 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#clickBOM').onclick = () => {
         console.clear()
         console.log(window.history)
-        console.log(navigator.platform, navigator.appCodeName,navigator.language)
+        console.log(navigator.platform, navigator.appCodeName, navigator.language)
         console.info('Информация')
         console.warn('Предупреждение')
         console.error('Ошибка')
     }
 
-    document.querySelector('.index1').onclick = () => window.location.href='index_new.html'
-    document.querySelector('.index2').onclick = () => window.location.href='index_next.html'
+    document.querySelector('.index1').onclick = () => window.location.href = 'index_new.html'
+    document.querySelector('.index2').onclick = () => window.location.href = 'index_next.html'
 
     document.querySelector('.back').onclick = () => window.history.back()
     document.querySelector('.next').onclick = () => window.history.forward()
@@ -86,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 //    - debugging в консоли
 
-
 // ИЗУЧИТЬ
 //    - глобальный объект window
 //    - Cookie (параметры, использование)
@@ -94,5 +94,34 @@ document.addEventListener('DOMContentLoaded', function () {
 //    - location, history, navigator (BOM)
 //    - работа с оповещением пользователя (alert, console.log)
 //    - дебаггинг в консоли браузера (точки останова, debugger)
+
+
+    // ИТЕРАЦИЯ 7
+    //  Отправить запросы на получение репозиториев любого пользователя github.com с последующим выведением данных на страницу:
+    //  1) с использованием Promise
+    //  2) с использованием async/await
+    //  Предусмотреть возможность обработки ошибки (в обоих случаях).
+    document.querySelector('#clickAsync').onclick = () => {
+        (async () => {
+            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+            let response = await fetch(url);
+
+            let commits = await response.json(); // читаем ответ в формате JSON
+            alert(commits[0].author.login);
+    })()
+    }
+
+    document.querySelector('#clickPromise').onclick = () => {
+        fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+            .then(response => response.json())
+            .then(commits => alert(commits[0].author.login));
+    }
+
+// ИЗУЧИТЬ
+    // - Типы запросов HTTP
+    // - JS fetch
+    // - Promise
+    // - async/await
+    // - обработка ошибок при отправлении запросов
 
 }, false);
