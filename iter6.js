@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(`Произведено удаление по ключу test\n Количество элементов - ${localStorage.length}`);
 
     }
+    debagger
 //    - debugging в консоли
 
 // ИЗУЧИТЬ
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.querySelector('#clickPromise').onclick = () => {
-        fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+        fetch('https://api.github.com/users/sonnetk/repos')
             .then(response => response.json())
             .then(commits => alert(commits[0].author.login));
     }
