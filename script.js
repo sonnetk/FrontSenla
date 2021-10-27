@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 //    - debugging в консоли
-        debugger;
+//       debugger;
 
 // ИТЕРАЦИЯ 7
 
