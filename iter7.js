@@ -7,11 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
     //  github.com с последующим выведением данных на страницу
     //  Предусмотреть возможность обработки ошибки (в обоих случаях)
 
+    window.addEventListener('unhandledrejection', function(event) {
+        // объект события имеет два специальных свойства:
+        alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
+        alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
+    });
+
     //  1) с использованием Promise
     const textSpan = document.querySelector('#resultClick')
 
     document.querySelector('#clickPromise').onclick = () => {
-
         // Пример промиса
         let promise = new Promise(function(resolve, reject) {
 
@@ -23,34 +28,31 @@ document.addEventListener('DOMContentLoaded', function () {
         promise.then(result => console.log(result))
 
         // Задание
-        fetch('https://api.github.com/users/sonnetk/repos')
+        let linkUser = document.querySelector('#inputLink'),
+            linkGit = `https://api.github.com/users/${linkUser.value}`
+
+        fetch(linkGit+'/repos')
             .then(response => response.json())
-            .then(commits => textSpan.innerHTML = 'Владелец - '+ commits[0].owner.login);
+            .then(commits => textSpan.innerHTML = 'Владелец - '+ commits[0].owner.login)
+            .catch(error => textSpan.innerHTML = error.message)
 
         // Играюсь с примером:
-        // Запрашиваем user.json
-        fetch('/article/promise-chaining/user.json')
-            // Загружаем данные в формате json
+        fetch(linkGit)
             .then(response => response.json())
-            // Делаем запрос к GitHub
-            .then(user => fetch(`https://api.github.com/users/${user.name}`))
-            // Загружаем ответ в формате json
-            .then(response => response.json())
-            // Показываем аватар (githubUser.avatar_url) в течение 3 секунд (возможно, с анимацией)
+            // Показываем аватар (githubUser.avatar_url) в течение 2 секунд (возможно, с анимацией)
             .then(githubUser => {
                 let img = document.createElement('img');
                 img.src = githubUser.avatar_url;
                 img.className = "promise-avatar-example";
-                document.body.append(img);
-
-                setTimeout(() => img.remove(), 3000); // (*)
-            });
+                document.querySelector('#resultClick').append(img);
+                setTimeout(() => img.remove(), 2000); // (*)
+            })
     }
 
     //  2) с использованием async/await
     document.querySelector('#clickAsync').onclick = () => {
         (async () => {
-            let url = 'https://api.github.com/users/sonnetk/repos';
+            let url = linkGit+'/repos';
             let response = await fetch(url);
             if (response.ok) {
                 let commits = await response.json();
