@@ -7,16 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //  github.com с последующим выведением данных на страницу
     //  Предусмотреть возможность обработки ошибки (в обоих случаях)
 
-    window.addEventListener('unhandledrejection', function(event) {
-        // объект события имеет два специальных свойства:
-        alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
-        alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
-    });
-
     //  1) с использованием Promise
     const textSpan = document.querySelector('#resultClick')
 
     document.querySelector('#clickPromise').onclick = () => {
+        let linkGit = `https://api.github.com/users/${document.querySelector('#inputLink').value}`
         // Пример промиса
         let promise = new Promise(function(resolve, reject) {
 
@@ -28,8 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         promise.then(result => console.log(result))
 
         // Задание
-        let linkUser = document.querySelector('#inputLink'),
-            linkGit = `https://api.github.com/users/${linkUser.value}`
 
         fetch(linkGit+'/repos')
             .then(response => response.json())
@@ -51,18 +44,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //  2) с использованием async/await
     document.querySelector('#clickAsync').onclick = () => {
+
+        // Задание
         (async () => {
-            let url = linkGit+'/repos';
+            let linkGit = `https://api.github.com/users/${document.querySelector('#inputLink').value}`
+            let url = linkGit +'/repos';
+
             let response = await fetch(url);
-            if (response.ok) {
+            try {
                 let commits = await response.json();
                 textSpan.innerHTML = commits[0].owner.login;
-            } else {
-                alert("Ошибка HTTP: " + response.status);
+            } catch (err) {
+                textSpan.innerHTML = `Ошибка HTTP: ${err.status}`
             }
         })()
-    }
 
+        // Играюсь с примером
+        async function showAvatar() {
+            let linkGit = `https://api.github.com/users/${document.querySelector('#inputLink').value}`
+            let githubResponse = await fetch(linkGit);
+
+            let githubUser = await githubResponse.json();
+            let img = document.createElement('img');
+            img.src = githubUser.avatar_url;
+            img.className = "promise-avatar-example";
+            document.querySelector('#resultClick').append(img);
+            await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+            img.remove();
+
+            return githubUser;
+        }
+        showAvatar();
+    }
+    //Глобальный обработчик
+    window.addEventListener('unhandledrejection', function(event) {
+        // объект события имеет два специальных свойства:
+        alert(event.promise); // [object Promise] - промис, который сгенерировал ошибку
+        alert(event.reason); // Error: Ошибка! - объект ошибки, которая не была обработана
+    });
 
 
 // ИЗУЧИТЬ
