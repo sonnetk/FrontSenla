@@ -10,13 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
     //  1) с использованием Promise
     const textSpan = document.querySelector('#resultClick')
 
-    document.querySelector('#clickPromise').onclick = () => {
+    document.querySelector('#clickPromise').onclick = async () => {
         let linkGit = `https://api.github.com/users/${document.querySelector('#inputLink').value}`
         // Пример промиса
         let promise = new Promise(function(resolve, reject) {
 
             setTimeout(() => resolve("done"), 1000);
-            setTimeout(() => reject(new Error("Whoops!")), 1000);
         });
         promise.finally(() => console.log('Промис завершен'))
         promise.catch(err => console.log(err))
@@ -24,13 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Задание
 
-        fetch(linkGit+'/repos')
+        await fetch(linkGit+'/repos')
             .then(response => response.json())
-            .then(commits => textSpan.innerHTML = 'Владелец - '+ commits[0].owner.login)
+            .then(commits => {
+                let str = 'Репозитории - '
+                commits?.map((commit)=> str+= `${commit.name} `);
+                textSpan.innerHTML = str;
+            })
             .catch(error => textSpan.innerHTML = error.message)
 
         // Играюсь с примером:
-        fetch(linkGit)
+        await fetch(linkGit)
             .then(response => response.json())
             // Показываем аватар (githubUser.avatar_url) в течение 2 секунд (возможно, с анимацией)
             .then(githubUser => {
@@ -50,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
             let linkGit = `https://api.github.com/users/${document.querySelector('#inputLink').value}`
             let url = linkGit +'/repos';
 
-            let response = await fetch(url);
+            let response = await fetch(url);// завершается с заголовками ответа
             try {
-                let commits = await response.json();
+                let commits = await response.json(); // читать тело ответа в формате JSON
                 textSpan.innerHTML = commits[0].owner.login;
             } catch (err) {
                 textSpan.innerHTML = `Ошибка HTTP: ${err.status}`
